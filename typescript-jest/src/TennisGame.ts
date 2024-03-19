@@ -1,13 +1,16 @@
 import { IRepresentation } from './IRepresentation';
+import { IScoreUpdater } from './IScoreUpdater';
 import { ITennisGame } from './ITennisGame';
 import { Player } from './Player';
 import { GameRepresentation } from './Representations';
+import { ScoreUpdater } from './ScoreUpdater';
 
 export class TennisGame implements ITennisGame {
   player1: Player;
   player2: Player;
 
   gameRepresentation: IRepresentation = new GameRepresentation();
+  scoreUpdater: IScoreUpdater = new ScoreUpdater();
 
   constructor(player1Name: string, player2Name: string) {
     this.player1 = new Player(player1Name);
@@ -15,8 +18,9 @@ export class TennisGame implements ITennisGame {
   }
 
   wonPoint(playerName: string): void {
-    if (playerName === this.player1.getName()) this.player1.incrementScore();
-    else this.player2.incrementScore();
+    if (playerName === this.player1.getName())
+      this.scoreUpdater.updateScore(this.player1);
+    else this.scoreUpdater.updateScore(this.player2);
   }
 
   getScore(): string {

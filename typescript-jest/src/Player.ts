@@ -15,7 +15,7 @@ export class Player {
     return this.score;
   }
 
-  incrementScore(): void {
-    this.score++;
+  setScore(newScore: number): void {
+    this.score = newScore;
   }
 }
