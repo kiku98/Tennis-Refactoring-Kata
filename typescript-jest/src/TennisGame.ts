@@ -1,3 +1,4 @@
+import { IRepresentation } from './IRepresentation';
 import { ITennisGame } from './ITennisGame';
 import { Player } from './Player';
 import { GameRepresentation } from './Representations';
@@ -5,6 +6,8 @@ import { GameRepresentation } from './Representations';
 export class TennisGame implements ITennisGame {
   player1: Player;
   player2: Player;
+
+  gameRepresentation: IRepresentation = new GameRepresentation();
 
   constructor(player1Name: string, player2Name: string) {
     this.player1 = new Player(player1Name);
@@ -17,7 +20,6 @@ export class TennisGame implements ITennisGame {
   }
 
   getScore(): string {
-    const gameRepresentation = new GameRepresentation();
-    return gameRepresentation.getScore(this);
+    return this.gameRepresentation.getScore(this);
   }
 }
