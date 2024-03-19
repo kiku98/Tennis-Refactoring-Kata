@@ -1,9 +1,9 @@
 import { ITennisGame } from './ITennisGame';
-import { Player } from './Player/Player';
-import { IRepresentation } from './Representation/IRepresentation';
-import { GameRepresentation } from './Representation/Representations';
-import { IScoreUpdater } from './ScoreUpdater/IScoreUpdater';
-import { ScoreUpdater } from './ScoreUpdater/ScoreUpdater';
+import { Player } from './player/Player';
+import { IRepresentation } from './representation/IRepresentation';
+import { GameRepresentation } from './representation/Representations';
+import { IScoreUpdater } from './scoreUpdater/IScoreUpdater';
+import { ScoreUpdater } from './scoreUpdater/ScoreUpdater';
 
 export class TennisGame implements ITennisGame {
   player1: Player;
