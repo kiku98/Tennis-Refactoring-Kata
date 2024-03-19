@@ -44,9 +44,9 @@ export class EndRepresentation implements ScoreRepresentation {
 }
 
 export class GameRepresentation implements ScoreRepresentation {
-  normalRepresentation = new NormalRepresentation();
-  drawRepresentationo = new DrawRepresentation();
-  endRepresentation = new EndRepresentation();
+  private normalRepresentation = new NormalRepresentation();
+  private drawRepresentationo = new DrawRepresentation();
+  private endRepresentation = new EndRepresentation();
 
   getScore(game: TennisGame): string {
     const player1Score = game.player1.getScore();
@@ -54,7 +54,7 @@ export class GameRepresentation implements ScoreRepresentation {
 
     if (player1Score == player2Score) {
       return this.drawRepresentationo.getScore(game);
-    } else if (Math.max(player1Score, player2Score) > 4) {
+    } else if (Math.max(player1Score, player2Score) >= 4) {
       return this.endRepresentation.getScore(game);
     } else {
       return this.normalRepresentation.getScore(game);
@@ -77,53 +77,7 @@ export class TennisGame implements ITennisGame {
   }
 
   getScore(): string {
-    let score: string = '';
-    let tempScore: number = 0;
-    if (this.player1.getScore() === this.player2.getScore()) {
-      switch (this.player1.getScore()) {
-        case 0:
-          score = 'Love-All';
-          break;
-        case 1:
-          score = 'Fifteen-All';
-          break;
-        case 2:
-          score = 'Thirty-All';
-          break;
-        default:
-          score = 'Deuce';
-          break;
-      }
-    } else if (this.player1.getScore() >= 4 || this.player2.getScore() >= 4) {
-      const minusResult: number =
-        this.player1.getScore() - this.player2.getScore();
-      if (minusResult === 1) score = 'Advantage player1';
-      else if (minusResult === -1) score = 'Advantage player2';
-      else if (minusResult >= 2) score = 'Win for player1';
-      else score = 'Win for player2';
-    } else {
-      for (let i = 1; i < 3; i++) {
-        if (i === 1) tempScore = this.player1.getScore();
-        else {
-          score += '-';
-          tempScore = this.player2.getScore();
-        }
-        switch (tempScore) {
-          case 0:
-            score += 'Love';
-            break;
-          case 1:
-            score += 'Fifteen';
-            break;
-          case 2:
-            score += 'Thirty';
-            break;
-          case 3:
-            score += 'Forty';
-            break;
-        }
-      }
-    }
-    return score;
+    const gameRepresentation = new GameRepresentation();
+    return gameRepresentation.getScore(this);
   }
 }
