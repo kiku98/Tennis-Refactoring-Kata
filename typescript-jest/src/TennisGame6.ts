@@ -1,8 +1,8 @@
 import { TennisGame } from './TennisGame';
 
 export class TennisGame6 implements TennisGame {
-  private player2Name : string;
-  private player1Name : string;
+  private player2Name: string;
+  private player1Name: string;
   private player1Score: number;
   private player2Score: number;
 
@@ -16,47 +16,41 @@ export class TennisGame6 implements TennisGame {
   getScore(): string {
     let result: string;
 
-    if (this.player1Score == this.player2Score)
-    {
+    if (this.player1Score == this.player2Score) {
       // tie score
       let tieScore: string;
-      switch (this.player1Score)
-      {
+      switch (this.player1Score) {
         case 0:
-          tieScore = "Love-All";
+          tieScore = 'Love-All';
           break;
         case 1:
-          tieScore = "Fifteen-All";
+          tieScore = 'Fifteen-All';
           break;
         case 2:
-          tieScore = "Thirty-All";
+          tieScore = 'Thirty-All';
           break;
         default:
-          tieScore = "Deuce";
+          tieScore = 'Deuce';
           break;
       }
 
       result = tieScore;
-    }
-    else if (this.player1Score >= 4 || this.player2Score >= 4)
-    {
+    } else if (this.player1Score >= 4 || this.player2Score >= 4) {
       // end-game score
       let endGameScore: string;
 
       if (this.player1Score - this.player2Score == 1) {
-        endGameScore = "Advantage " + this.player1Name;
+        endGameScore = 'Advantage ' + this.player1Name;
       } else if (this.player1Score - this.player2Score == -1) {
-        endGameScore = "Advantage " + this.player2Name;
+        endGameScore = 'Advantage ' + this.player2Name;
       } else if (this.player1Score - this.player2Score >= 2) {
-        endGameScore = "Win for " + this.player1Name;
+        endGameScore = 'Win for ' + this.player1Name;
       } else {
-        endGameScore = "Win for " + this.player2Name;
+        endGameScore = 'Win for ' + this.player2Name;
       }
 
       result = endGameScore;
-    }
-    else
-    {
+    } else {
       // regular score
       let regularScore: string;
 
@@ -64,48 +58,46 @@ export class TennisGame6 implements TennisGame {
 
       switch (this.player1Score) {
         case 0:
-          score1 = "Love";
+          score1 = 'Love';
           break;
         case 1:
-          score1 = "Fifteen";
+          score1 = 'Fifteen';
           break;
         case 2:
-          score1 = "Thirty";
+          score1 = 'Thirty';
           break;
         default:
-          score1 = "Forty";
+          score1 = 'Forty';
           break;
       }
 
       let score2: string;
       switch (this.player2Score) {
         case 0:
-          score2 = "Love";
+          score2 = 'Love';
           break;
         case 1:
-          score2 = "Fifteen";
+          score2 = 'Fifteen';
           break;
         case 2:
-          score2 = "Thirty";
+          score2 = 'Thirty';
           break;
         default:
-          score2 = "Forty";
+          score2 = 'Forty';
           break;
       }
 
-      regularScore = score1 + "-" + score2;
+      // eslint-disable-next-line prefer-const
+      regularScore = score1 + '-' + score2;
 
       result = regularScore;
     }
 
     return result;
-
   }
 
   wonPoint(playerName: string): void {
-    if (playerName === 'player1')
-      this.player1Score += 1;
-    else
-      this.player2Score += 1;
+    if (playerName === 'player1') this.player1Score += 1;
+    else this.player2Score += 1;
   }
 }

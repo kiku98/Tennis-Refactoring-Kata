@@ -1,6 +1,15 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {TennisGame, TennisGame1, TennisGame2, TennisGame3, TennisGame4, TennisGame5, TennisGame6} from '../src';
+
+import {
+  TennisGame,
+  TennisGame1,
+  TennisGame2,
+  TennisGame3,
+  TennisGame4,
+  TennisGame5,
+  TennisGame6,
+} from '../src';
 
 function getAllScores(): Array<[number, number, string]> {
   const testCases = path.resolve(__dirname, 'scores.json');
@@ -11,7 +20,12 @@ function getAllScores(): Array<[number, number, string]> {
 
 const scores: Array<[number, number, string]> = getAllScores();
 
-function checkScore(game: TennisGame, player1Score: number, player2Score: number, expectedScore: string): void {
+function checkScore(
+  game: TennisGame,
+  player1Score: number,
+  player2Score: number,
+  expectedScore: string,
+): void {
   const highestScore: number = Math.max(player1Score, player2Score);
   for (let i = 0; i < highestScore; i++) {
     if (i < player1Score) {
@@ -25,11 +39,15 @@ function checkScore(game: TennisGame, player1Score: number, player2Score: number
 }
 
 describe('TennisGame', () => {
-
   describe('TennisGame1', () => {
     scores.forEach(([player1Score, player2Score, expectedScore]) => {
       it(`scores ${player1Score}:${player2Score} as ${expectedScore}`, () => {
-        checkScore(new TennisGame1('player1', 'player2'), player1Score, player2Score, expectedScore);
+        checkScore(
+          new TennisGame1('player1', 'player2'),
+          player1Score,
+          player2Score,
+          expectedScore,
+        );
       });
     });
   });
@@ -37,7 +55,12 @@ describe('TennisGame', () => {
   describe('TennisGame2', () => {
     scores.forEach(([player1Score, player2Score, expectedScore]) => {
       it(`scores ${player1Score}:${player2Score} as ${expectedScore}`, () => {
-        checkScore(new TennisGame2('player1', 'player2'), player1Score, player2Score, expectedScore);
+        checkScore(
+          new TennisGame2('player1', 'player2'),
+          player1Score,
+          player2Score,
+          expectedScore,
+        );
       });
     });
   });
@@ -45,7 +68,12 @@ describe('TennisGame', () => {
   describe('TennisGame3', () => {
     scores.forEach(([player1Score, player2Score, expectedScore]) => {
       it(`scores ${player1Score}:${player2Score} as ${expectedScore}`, () => {
-        checkScore(new TennisGame3('player1', 'player2'), player1Score, player2Score, expectedScore);
+        checkScore(
+          new TennisGame3('player1', 'player2'),
+          player1Score,
+          player2Score,
+          expectedScore,
+        );
       });
     });
   });
@@ -53,7 +81,12 @@ describe('TennisGame', () => {
   describe('TennisGame4', () => {
     scores.forEach(([player1Score, player2Score, expectedScore]) => {
       it(`scores ${player1Score}:${player2Score} as ${expectedScore}`, function () {
-        checkScore(new TennisGame4('player1', 'player2'), player1Score, player2Score, expectedScore);
+        checkScore(
+          new TennisGame4('player1', 'player2'),
+          player1Score,
+          player2Score,
+          expectedScore,
+        );
       });
     });
   });
@@ -61,7 +94,12 @@ describe('TennisGame', () => {
   describe('TennisGame5', () => {
     scores.forEach(([player1Score, player2Score, expectedScore]) => {
       it(`scores ${player1Score}:${player2Score} as ${expectedScore}`, function () {
-        checkScore(new TennisGame5('player1', 'player2'), player1Score, player2Score, expectedScore);
+        checkScore(
+          new TennisGame5('player1', 'player2'),
+          player1Score,
+          player2Score,
+          expectedScore,
+        );
       });
     });
   });
@@ -69,9 +107,13 @@ describe('TennisGame', () => {
   describe('TennisGame6', () => {
     scores.forEach(([player1Score, player2Score, expectedScore]) => {
       it(`scores ${player1Score}:${player2Score} as ${expectedScore}`, function () {
-        checkScore(new TennisGame6('player1', 'player2'), player1Score, player2Score, expectedScore);
+        checkScore(
+          new TennisGame6('player1', 'player2'),
+          player1Score,
+          player2Score,
+          expectedScore,
+        );
       });
     });
   });
-
 });
