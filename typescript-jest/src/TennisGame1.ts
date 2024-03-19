@@ -1,26 +1,26 @@
+import { Player } from './Player';
 import { TennisGame } from './TennisGame';
 
 export class TennisGame1 implements TennisGame {
-  private mScore1: number = 0;
-  private mScore2: number = 0;
-  private player1Name: string;
-  private player2Name: string;
+  player1: Player;
+  player2: Player;
 
   constructor(player1Name: string, player2Name: string) {
-    this.player1Name = player1Name;
-    this.player2Name = player2Name;
+    this.player1 = new Player(player1Name);
+    this.player2 = new Player(player2Name);
   }
 
   wonPoint(playerName: string): void {
-    if (playerName === 'player1') this.mScore1 += 1;
-    else this.mScore2 += 1;
+    if (playerName === this.player1.getName())
+      this.player1.setScore(this.player1.getScore() + 1);
+    else this.player2.setScore(this.player2.getScore() + 1);
   }
 
   getScore(): string {
     let score: string = '';
     let tempScore: number = 0;
-    if (this.mScore1 === this.mScore2) {
-      switch (this.mScore1) {
+    if (this.player1.getScore() === this.player2.getScore()) {
+      switch (this.player1.getScore()) {
         case 0:
           score = 'Love-All';
           break;
@@ -34,18 +34,19 @@ export class TennisGame1 implements TennisGame {
           score = 'Deuce';
           break;
       }
-    } else if (this.mScore1 >= 4 || this.mScore2 >= 4) {
-      const minusResult: number = this.mScore1 - this.mScore2;
+    } else if (this.player1.getScore() >= 4 || this.player2.getScore() >= 4) {
+      const minusResult: number =
+        this.player1.getScore() - this.player2.getScore();
       if (minusResult === 1) score = 'Advantage player1';
       else if (minusResult === -1) score = 'Advantage player2';
       else if (minusResult >= 2) score = 'Win for player1';
       else score = 'Win for player2';
     } else {
       for (let i = 1; i < 3; i++) {
-        if (i === 1) tempScore = this.mScore1;
+        if (i === 1) tempScore = this.player1.getScore();
         else {
           score += '-';
-          tempScore = this.mScore2;
+          tempScore = this.player2.getScore();
         }
         switch (tempScore) {
           case 0:
