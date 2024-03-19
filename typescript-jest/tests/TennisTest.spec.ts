@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { TennisGame } from '../src';
-import { ITennisGame } from '../src/TennisGameInterface';
+import { ITennisGame } from '../src/ITennisGame';
 
 function getAllScores(): Array<[number, number, string]> {
   const testCases = path.resolve(__dirname, 'scores.json');
