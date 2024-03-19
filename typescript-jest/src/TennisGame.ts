@@ -2,53 +2,30 @@ import { Player } from './Player';
 import { ITennisGame } from './TennisGameInterface';
 
 export interface ScoreRepresentation {
-  isApplicable(tennisGame: TennisGame): boolean;
-  getScore(tennisGame: TennisGame): string;
+  getScore(game: TennisGame): string;
 }
 
 export class NormalRepresentation implements ScoreRepresentation {
-  isApplicable(tennisGame: TennisGame): boolean {
-    throw new Error('Method not implemented.');
-  }
-  getScore(tennisGame: TennisGame): string {
+  getScore(game: TennisGame): string {
     throw new Error('Method not implemented.');
   }
 }
 
 export class DrawRepresentation implements ScoreRepresentation {
-  isApplicable(tennisGame: TennisGame): boolean {
-    throw new Error('Method not implemented.');
-  }
-  getScore(tennisGame: TennisGame): string {
+  getScore(game: TennisGame): string {
     throw new Error('Method not implemented.');
   }
 }
 
 export class EndRepresentation implements ScoreRepresentation {
-  isApplicable(tennisGame: TennisGame): boolean {
-    throw new Error('Method not implemented.');
-  }
-  getScore(tennisGame: TennisGame): string {
+  getScore(game: TennisGame): string {
     throw new Error('Method not implemented.');
   }
 }
 
-export class RepresentationHandler {
-  representations: ScoreRepresentation[] = [];
-
-  constructor() {
-    this.representations.push(new NormalRepresentation());
-    this.representations.push(new DrawRepresentation());
-    this.representations.push(new EndRepresentation());
-  }
-
-  getRepresentation(game: TennisGame): ScoreRepresentation {
-    for (const rep of this.representations) {
-      if (rep.isApplicable(game)) {
-        return rep;
-      }
-    }
-    return this.representations[0];
+export class GameRepresentation implements ScoreRepresentation {
+  getScore(game: TennisGame): string {
+    throw new Error('Method not implemented.');
   }
 }
 
