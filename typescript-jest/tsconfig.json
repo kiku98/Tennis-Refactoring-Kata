@@ -20,8 +20,11 @@
   "include": [
     "./src/**.ts",
     "./tests/*.spec.ts",
-    "src/IRepresentation.ts",
-    "src/Representations.ts"
+    "src/Representation/IRepresentation.ts",
+    "src/Representation/Representations.ts",
+    "src/ScoreUpdater/IScoreUpdater.ts",
+    "src/ScoreUpdater/ScoreUpdater.ts",
+    "src/Player/Player.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,5 +1,5 @@
 import { IRepresentation } from './IRepresentation';
-import { TennisGame } from './TennisGame';
+import { TennisGame } from '../TennisGame';
 
 export class NormalRepresentation implements IRepresentation {
   getScore(game: TennisGame): string {
